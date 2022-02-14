@@ -1,0 +1,20 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Créer un agent{% endblock %}
+
+{% block main %}
+    <h1>Créer un nouvel agent</h1>
+
+
+        {{ include('agent/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+
+
+
+        <a href="{{ path('agent_index') }}" class="btn btn-primary" >Retour à la liste des agents</a>
+
+
+
+        {{ include('agent/_delete_form.html.twig') }}
+
+
+{% endblock %}

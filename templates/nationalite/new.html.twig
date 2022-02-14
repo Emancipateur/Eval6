@@ -1,0 +1,11 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Nouvelle nationalité{% endblock %}
+
+{% block main %}
+    <h1>Créer une nouvelle nationalité</h1>
+
+    {{ include('nationalite/_form.html.twig') }}
+
+    <a href="{{ path('nationalite_index') }}" class="btn btn-primary">Retour à la liste</a>
+{% endblock %}

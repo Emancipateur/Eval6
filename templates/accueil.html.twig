@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+ {% block main %}
+
+     <div class="table table-dark table-striped">
+         <table>
+             <thead>
+             <tr>
+               
+                 <td>Titre</td>
+                 <td>Description</td>
+                 <td>Nom de code</td>
+                 <td>Date de début</td>
+                 <td>Date de fin</td>
+                 <td>Agent</td>
+                 <td>nationalite</td>
+                 <td>contact</td>
+                 <td>cible</td>
+                 <td>statut</td>
+                 <td>planque</td>
+                 <td>specialite</td>
+                
+
+             </tr>
+             </thead>
+
+             <tbody>
+             {% for mission in missions %}
+                 <tr>
+                     
+                     <td>{{ mission.titre }}</td>
+                     <td>{{ mission.description }}</td>
+                     <td>{{ mission.nomCode }}</td>
+                     <td>{{ mission.dateDebut|date("m/d/Y") }}</td>
+                     <td>{{ mission.dateFin|date("m/d/Y") }}</td>
+                     <td>
+                         {% for agent in mission.getAgents().toArray() %}
+                            {{ agent.nom }}
+                         {%  endfor %}
+                     </td>
+                     <td>{{ mission.nationalite.pays }}</td>
+                     <td>
+                         {% for contact in mission.contacts %}
+                             {{ contact.nom }}
+                         {%  endfor %}
+                     </td>
+                     <td>
+                         {% for cible in mission.cibles %}
+                             {{ cible.nom }}
+                         {%  endfor %}
+                     </td>
+        
+                     <td> {{ mission.statut.nom }}</td>
+                     <td>
+                         {% for planque in mission.planques %}
+                             {{ planque.nomCode }}
+                         {%  endfor %}
+                      </td>
+                     <td> {{ mission.specialite.nom }}</td>
+
+                 </tr>
+             {% endfor %}
+             </tbody>
+         </table>
+
+     </div>
+ {% endblock main %}
+

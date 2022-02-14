@@ -1,0 +1,43 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Agent index{% endblock %}
+
+{% block main %}
+    <h1>Agent index</h1>
+
+    <div class="table table-dark table-striped">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Date_naissance</th>
+                    <th>Code_identification</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for agent in agents %}
+                <tr>
+                    <td>{{ agent.id }}</td>
+                    <td>{{ agent.nom }}</td>
+                    <td>{{ agent.prenom }}</td>
+                    <td>{{ agent.dateNaissance ? agent.dateNaissance|date('Y-m-d') : '' }}</td>
+                    <td>{{ agent.NomCode }}</td>
+                    <td>
+                        <a href="{{ path('agent_show', {'id': agent.id}) }}" class="btn btn-primary">Détails</a>
+                        <a href="{{ path('agent_edit', {'id': agent.id}) }}" class="btn btn-primary">Modifier l'Agent</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        <a href="{{ path('agent_new') }}" class="btn btn-primary">Créer un nouvel Agent</a>
+        <a href="{{ path('admin_missions_list') }}" class="btn btn-primary">Retour à la liste des missions</a>
+{% endblock %}

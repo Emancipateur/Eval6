@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypePlanque index{% endblock %}
+
+{% block body %}
+    <h1>TypePlanque index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_planque in type_planques %}
+            <tr>
+                <td>{{ type_planque.id }}</td>
+                <td>{{ type_planque.nom }}</td>
+                <td>
+                    <a href="{{ path('type_planque_show', {'id': type_planque.id}) }}">show</a>
+                    <a href="{{ path('type_planque_edit', {'id': type_planque.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('type_planque_new') }}">Create new</a>
+{% endblock %}

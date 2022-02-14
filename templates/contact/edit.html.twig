@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un contact{% endblock %}
+
+{% block main %}
+    <h1>Créer un contact</h1>
+
+    {{ include('contact/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('contact_index') }}" class="btn btn-primary">Retour à la liste</a>
+
+    {{ include('contact/_delete_form.html.twig') }}
+{% endblock %}

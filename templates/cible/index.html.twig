@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cible index{% endblock %}
+
+{% block main %}
+    <h1>Cible index</h1>
+
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date_naissance</th>
+                <th>Nom_code</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cible in cibles %}
+            <tr>
+                <td>{{ cible.id }}</td>
+                <td>{{ cible.nom }}</td>
+                <td>{{ cible.prenom }}</td>
+                <td>{{ cible.dateNaissance ? cible.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ cible.nomCode }}</td>
+                <td>
+                    <a href="{{ path('cible_show', {'id': cible.id}) }}" class="btn btn-primary">Détails</a>
+                    <a href="{{ path('cible_edit', {'id': cible.id}) }}" class="btn btn-primary">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('cible_new') }}" class="btn btn-primary">Créer une nouvelle cible</a>
+    <a href="{{ path('admin_missions_list') }}" class="btn btn-primary">Retour à la liste des missions</a>
+{% endblock %}

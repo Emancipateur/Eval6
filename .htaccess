@@ -1,0 +1,5 @@
+RewriteEngine On
+
+
+ # Then rewrite any request to /folder
+ RewriteRule ^((?!public).*)$ /public/$1 [NC,L]

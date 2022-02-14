@@ -1,0 +1,67 @@
+{% extends 'admin/base.html.twig' %}
+
+    {% block main %}
+        <div class="table table-dark table-striped">
+
+            <table>
+                <thead>
+                <tr>
+                    <td>Missions</td>
+                    <td>Titre</td>
+                    <td >Description</td>
+                    <td>Nom de code</td>
+                    <td>Date de début</td>
+                    <td>Date de fin</td>
+                    <td>Agent</td>
+                    <td>nationalite</td>
+                    <td>contact</td>
+                    <td>cible</td>
+                    <td>statut</td>
+                    <td>planque</td>
+                    <td>specialite</td>
+                    <td>Supprimer</td>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for mission in missionsSearch %}
+                    <tr>
+                        <td>{{ mission.id }}</td>
+                        <td>{{ mission.titre }}</td>
+                        <td>{{ mission.description }}</td>
+                        <td>{{ mission.nomCode }}</td>
+                        <td>{{ mission.dateDebut|date("m/d/Y") }}</td>
+                        <td>{{ mission.dateFin|date("m/d/Y") }}</td>
+                        <td>
+                            {% for agent in mission.getAgents().toArray() %}
+                                {{ agent.nom }}
+                            {%  endfor %}
+                        </td>
+                        <td>nationalite : {{ mission.nationalite.pays }}</td>
+                        <td>
+                            {% for contact in mission.contacts %}
+                                {{ contact.nom }}
+                            {%  endfor %}
+                        </td>
+                        <td>
+                            {% for cible in mission.cibles %}
+                                {{ cible.nom }}
+                            {%  endfor %}
+                        </td>
+                      
+                        <td>statut : {{ mission.statut.nom }}</td>
+                        <td>
+                            {% for planque in mission.planques %}
+                                {{ planque.nomCode }}
+                            {%  endfor %}
+                        </td>
+                        <td>specialite : {{ mission.specialite.nom }}</td>
+                        <td><a href="{{ path('admin_missions_liste_delete', {'id': mission.id }) }}">Supprimer la mission</a></td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    {% endblock main %}

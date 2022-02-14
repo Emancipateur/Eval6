@@ -1,0 +1,13 @@
+{% extends 'admin/base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Nouveau Agent{% endblock %}
+
+{% block main %}
+    <h1>Créer un nouvel agent</h1>
+
+
+    {{ include('agent/_form.html.twig') }}
+
+    <a href="{{ path('agent_index') }}" class="btn btn-primary">Retour à la liste</a>
+{% endblock %}

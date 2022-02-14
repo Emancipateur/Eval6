@@ -1,0 +1,38 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des nationalités{% endblock %}
+
+{% block main %}
+    <h1>Liste des nationalités</h1>
+
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pays</th>
+                <th>Nationalite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for nationalite in nationalites %}
+            <tr>
+                <td>{{ nationalite.id }}</td>
+                <td>{{ nationalite.pays }}</td>
+                <td>{{ nationalite.nationalite }}</td>
+                <td>
+                    <a href="{{ path('nationalite_show', {'id': nationalite.id}) }}" class="btn btn-primary">Détail</a>
+                    <a href="{{ path('nationalite_edit', {'id': nationalite.id}) }}" class="btn btn-primary">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('nationalite_new') }}" class="btn btn-primary">Créer une nouvelle nationalité</a>
+    <a href="{{ path('admin_missions_list') }}" class="btn btn-primary">Retour à la liste des missions</a>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Specialite{% endblock %}
+
+{% block main %}
+    <h1>Specialite</h1>
+
+    <table class="table table-dark table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ specialite.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ specialite.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('specialite_index') }}" class="btn btn-primary">Retour à la liste</a>
+
+    <a href="{{ path('specialite_edit', {'id': specialite.id}) }}" class="btn btn-primary">Modifier</a>
+
+    {{ include('specialite/_delete_form.html.twig') }}
+{% endblock %}

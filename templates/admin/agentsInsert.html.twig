@@ -1,0 +1,12 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block main %}
+    {{ form(agentForm) }}
+
+    <button class="button"
+            type="button">
+
+        <a href="{{ path('agent_index') }}">Retourner à la liste des agents</a>
+    </button>
+
+{% endblock main %}

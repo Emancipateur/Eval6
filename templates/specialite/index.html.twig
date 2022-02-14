@@ -1,0 +1,36 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des spécialités{% endblock %}
+
+{% block main %}
+    <h1>Liste des spécialités</h1>
+
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for specialite in specialites %}
+            <tr>
+                <td>{{ specialite.id }}</td>
+                <td>{{ specialite.nom }}</td>
+                <td>
+                    <a href="{{ path('specialite_show', {'id': specialite.id}) }}" class="btn btn-primary">Détail</a>
+                    <a href="{{ path('specialite_edit', {'id': specialite.id}) }}" class="btn btn-primary">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('specialite_new') }}" class="btn btn-primary">Créer une nouvelle spécialité</a>
+    <a href="{{ path('admin_missions_list') }}" class="btn btn-primary">Retour à la liste des missions</a>
+{% endblock %}

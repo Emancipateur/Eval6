@@ -1,0 +1,58 @@
+body{
+    background-image: url('https://img.wallpapersafari.com/desktop/1600/900/97/10/SnXdLu.jpg');
+}
+
+.header-top {
+    background-color: lightcoral;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    height: 100px;
+}
+
+
+.missions-container {
+    width: 100%;
+    border: 1px solid black;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid rgb(0, 13, 128);
+    background : black;
+    text-align: center;
+  
+
+}
+
+form{
+    background : black;
+}
+td {
+    border-width:1px;
+    border-style:solid;
+    
+
+}
+
+
+main{
+    width: 80%;
+    margin: 5rem auto;
+}
+
+
+label{
+    color : white
+}
+
+.buttonAdminList{
+  display: flex;
+  justify-content: space-around;
+ 
+  margin-bottom: 1rem;
+    
+}

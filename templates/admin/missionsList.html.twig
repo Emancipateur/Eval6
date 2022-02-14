@@ -1,0 +1,127 @@
+{% extends 'admin/base.html.twig' %}
+
+    {% block main %}
+        <br>
+        <div class="buttonAdminList">
+        <button class="btn btn-dark"
+                type="button">
+
+            <a href="{{ path('admin_missions_liste_insert') }}">Ajouter une mission</a>
+
+        </button>
+
+        <button class="btn btn-dark"
+                type="button">
+
+            <a href="{{ path('agent_index') }}">Liste des agents</a>
+
+        </button>
+
+        <button class="btn btn-dark"
+                type="button">
+
+            <a href="{{ path('cible_index') }}">Liste des cibles</a>
+
+        </button>
+
+        <button class="btn btn-dark"
+                type="button">
+
+            <a href="{{ path('contact_index') }}">Liste des contacts</a>
+
+        </button>
+
+        <button class="btn btn-dark"
+                type="button">
+
+            <a href="{{ path('nationalite_index') }}">Liste des nationalités</a>
+
+        </button>
+
+        <button class="btn btn-dark"
+                type="button">
+
+            <a href="{{ path('planque_index') }}">Liste des planques</a>
+
+        </button>
+
+        <button class="btn btn-dark"
+                type="button">
+
+            <a href="{{ path('specialite_index') }}">Liste des spécialités</a>
+
+        </button>
+
+        <button class="btn btn-dark"
+                type="button">
+
+            <a href="{{ path('types_mission_index') }}">Liste des types de mission</a>
+
+        </button>
+</div>
+
+        <div class="table table-dark table-striped">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Missions</td>
+                            <td>Titre</td>
+                            <td>Description</td>
+                            <td>Nom de code</td>
+                            <td>Date de début</td>
+                            <td>Date de fin</td>
+                            <td>Agent</td>
+                            <td>nationalite</td>
+                            <td>contact</td>
+                            <td>cible</td>
+                            <td>statut</td>
+                            <td>planque</td>
+                            <td>specialite</td>
+                            <td>Modifier la mission</td>
+                            <td>Supprimer</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for mission in missions %}
+                            <tr>
+                                <td>{{ mission.id }}</td>
+                                <td>{{ mission.titre }}</td>
+                                <td>{{ mission.description }}</td>
+                                <td>{{ mission.nomCode }}</td>
+                                <td>{{ mission.dateDebut|date("m/d/Y") }}</td>
+                                <td>{{ mission.dateFin|date("m/d/Y") }}</td>
+                                <td>
+                                    {% for agent in mission.getAgents().toArray() %}
+                                        {{ agent.nom }}
+                                    {%  endfor %}
+                                </td>
+                                <td>{{ mission.nationalite.pays }}</td>
+                                <td>
+                                    {% for contact in mission.contacts %}
+                                        {{ contact.nom }}
+                                    {%  endfor %}
+                                </td>
+                                <td>
+                                    {% for cible in mission.cibles %}
+                                        {{ cible.nom }}
+                                    {%  endfor %}
+                                </td>
+                            
+                                <td> {{ mission.statut.nom }}</td>
+                                <td>
+                                    {% for planque in mission.planques %}
+                                        {{ planque.nomCode }}
+                                    {%  endfor %}
+                                </td>
+                                <td>{{ mission.specialite.nom }}</td>
+                                <td><a href="{{ path('admin_missions_liste_update', {'id': mission.id}) }}">Modifier une mission</a></td>
+                                <td><a href="{{ path('admin_missions_liste_delete', {'id': mission.id }) }}">Supprimer la mission</a></td>
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+        </div>
+    {% endblock main %}
